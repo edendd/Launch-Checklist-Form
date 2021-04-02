@@ -63,20 +63,32 @@ window.addEventListener("load",function(){
           (faultyItems.style.visibility = "visible");
        
          
-          if(fuelLevelInput.value < 10000) {
+          if(fuelLevelInput.value < 10000 && cargoMassInput.value < 10000 ) {
              faultyItems.style.visibility = "visible";
              pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`;
              copilotStatus.innerHTML = `Copilot ${copilotNameInput.value} is ready for launch.`;
              fuelStatus.innerHTML = "Fuel too low for launch";
+             cargoStatus.innerHTML = "Cargo mass too low to take off!";
              launchStatus.innerHTML = "Shuttle not ready for launch.";
              launchStatus.style.color = "red";
-          } else if(cargoMassInput.value > 10000) {
+
+          } else if(cargoMassInput.value > 10000 && fuelLevelInput.value > 10000) {
              faultyItems.style.visibility = "visible";
              pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`;
              copilotStatus.innerHTML = `Copilot ${copilotNameInput.value} is ready for launch.`;
              cargoStatus.innerHTML = "Cargo mass too high to take off!";
+             fuelStatus.innerHTML = "Fuel too high for launch";
              launchStatus.innerHTML = "Shuttle not ready for launch!";
              launchStatus.style.color = "red";
+
+            } else if(cargoMassInput.value < 10000 && fuelLevelInput.value > 10000) {
+               faultyItems.style.visibility = "visible";
+               pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`;
+               copilotStatus.innerHTML = `Copilot ${copilotNameInput.value} is ready for launch.`;
+               cargoStatus.innerHTML = "Cargo mass too low to take off!";
+               fuelStatus.innerHTML = "Fuel too high for launch";
+               launchStatus.innerHTML = "Shuttle not ready for launch!";
+               launchStatus.style.color = "red";
           } else {
              faultyItems.style.visibility = "visible";
              pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`;
